@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     font-family: 'NanumBarunGothic', 'Arial', sans-serif;
   }
+  
   ${reset}
 `;
 
