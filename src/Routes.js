@@ -5,16 +5,18 @@ import Main from 'pages/Main';
 import Movies from 'pages/Movies';
 import Nav from 'components/Nav';
 import Footer from 'components/Footer';
+import KakaoRedirect from 'pages/KakaoRedirect';
 
 class Routes extends React.Component {
   render() {
     return (
       <Router>
-        {/* <Nav /> */}
+        <Nav />
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/main" component={Main} />
           <Route exact path="/movies" component={Movies} />
+          <Route exact path="/oauth/kakao" component={KakaoRedirect} />
         </Switch>
         <Footer />
       </Router>
