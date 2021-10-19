@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "topMenuTitle": "박스오피스"
+  },
+  {
+    "id": 2,
+    "topMenuTitle": "상영예정작"
+  },
+  {
+    "id": 3,
+    "topMenuTitle": "특별상영"
+  },
+  {
+    "id": 4,
+    "topMenuTitle": "필름소사이어티"
+  },
+  {
+    "id": 5,
+    "topMenuTitle": "클래식소사이어티"
+  }
+]
