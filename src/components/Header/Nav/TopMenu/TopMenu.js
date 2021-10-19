@@ -12,7 +12,6 @@ class TopMenu extends Component {
 
   // 테스트 토큰
   getToken = () => {
-    const { isToken } = this.state;
     if (!window.localStorage.token) {
       window.localStorage.setItem('token', 'myToken');
       this.setState({
