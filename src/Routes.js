@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
 import Movies from 'pages/Movies';
-import Nav from 'components/Nav';
+import Header from 'components/Header/Header';
 import Footer from 'components/Footer';
 import KakaoRedirect from 'pages/KakaoRedirect';
 import MoviesInfo from 'pages/Movies/MoviesInfo';
@@ -12,7 +12,7 @@ class Routes extends React.Component {
   render() {
     return (
       <Router>
-        <Nav />
+        <Header />
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/main" component={Main} />
