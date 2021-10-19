@@ -2,7 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
-  * {
+${reset}
+* {
     box-sizing: border-box;
   }
   
@@ -10,10 +11,8 @@ const GlobalStyle = createGlobalStyle`
   body,
   #root {
     height: 100%;
-    font-family: 'NanumBarunGothic', 'Arial', sans-serif;
+    font-family:'base';  
   }
-  
-  ${reset}
 `;
 
 export default GlobalStyle;

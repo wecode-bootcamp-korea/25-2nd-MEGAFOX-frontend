@@ -5,5 +5,4 @@ class Main extends Component {
     return <div>Main page</div>;
   }
 }
-
 export default Main;
