@@ -6,6 +6,7 @@ import Movies from 'pages/Movies';
 import Nav from 'components/Nav';
 import Footer from 'components/Footer';
 import KakaoRedirect from 'pages/KakaoRedirect';
+import MoviesInfo from 'pages/Movies/MoviesInfo';
 
 class Routes extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class Routes extends React.Component {
           <Route exact path="/main" component={Main} />
           <Route exact path="/movies" component={Movies} />
           <Route exact path="/oauth/kakao" component={KakaoRedirect} />
+          <Route exact path="/info" component={MoviesInfo} />
         </Switch>
         <Footer />
       </Router>
