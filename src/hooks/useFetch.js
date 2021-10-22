@@ -8,8 +8,7 @@ import { API } from 'config';
  * @returns API를 통해 얻은 데이터
  */
 export default function useFetch(key, options) {
-  const [data, setData] = useState({});
-
+  const [data, setData] = useState();
   useEffect(() => {
     fetch(API[key], {
       ...options,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import NAV_DATA from '../NavData';
+import NAV_DATA from '../navData';
 import styled from 'styled-components';
 
 class SiteMap extends Component {

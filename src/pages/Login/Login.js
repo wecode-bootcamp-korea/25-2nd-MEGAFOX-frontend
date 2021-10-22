@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import Modal from 'components/Modal';
 import { KAKAO_LOGIN_URL } from 'config';
 
-export default function Login() {
+export default function Login({ closeLogin }) {
   return (
-    <Modal>
+    <Modal closeModal={closeLogin}>
       <Input placeholder="아이디" />
       <Input placeholder="비밀번호" />
       <LineToSaveId>
@@ -26,7 +26,7 @@ export default function Login() {
         <Link to="/">비회원 예매확인</Link>
       </Links>
       <a href={KAKAO_LOGIN_URL} target="_blank" rel="noopener noreferrer">
-        <KakaoButton src="images/kakao/kakao_login_large_wide.png" />
+        <KakaoButton src="/images/kakao/kakao_login_large_wide.png" />
       </a>
     </Modal>
   );
