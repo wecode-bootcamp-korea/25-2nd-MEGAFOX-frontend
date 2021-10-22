@@ -6,7 +6,7 @@ export default function Modal({ children, closeModal }) {
     <StyledModal>
       <Header>
         <span>Login</span>
-        <span onClick={closeModal}>X</span>
+        <span onClick={closeModal}>x</span>
       </Header>
       <Content>{children}</Content>
     </StyledModal>
