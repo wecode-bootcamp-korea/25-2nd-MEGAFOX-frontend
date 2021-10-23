@@ -6,7 +6,7 @@ import GoTopBtn from 'components/GoTopBtn/GoTopBtn';
 import Button from './components/Button';
 import Login from '../Login/Login';
 
-export function Theater() {
+export default function Theater() {
   const cityTheaterList = useFetch('theater_list');
   const [activeLogin, setActiveLogin] = useState(false);
   const [selectedCity, setSelectedCity] = useState(0);

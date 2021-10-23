@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
 import Movies from 'pages/Movies';
-import Header from 'components/Header/Header';
-import Footer from 'components/Footer';
+import Theater from 'pages/Theater';
 import KakaoRedirect from 'pages/KakaoRedirect';
 import MoviesInfo from 'pages/Movies/MoviesInfo';
+import Header from 'components/Header/Header';
+import Footer from 'components/Footer';
 import Tab from 'components/Tab/Tab';
 
 class Routes extends React.Component {
