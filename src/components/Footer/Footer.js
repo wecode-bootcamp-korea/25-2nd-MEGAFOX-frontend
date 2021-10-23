@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { flexCenter, flexBetween } from 'styles/mixin';
 
 export default function Footer() {
   return (
@@ -41,7 +40,9 @@ const FooterWrap = styled.footer`
 `;
 
 const FooterContent = styled.div`
-  ${flexBetween}
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 1100px;
   margin: 0 auto;
 `;
@@ -58,7 +59,9 @@ const Logo = styled.div`
 `;
 
 const MemberList = styled.ul`
-  ${flexCenter}
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 290px;
   margin: 10px 0;
 `;
@@ -109,7 +112,7 @@ const MEGAFOX_MEMBER_LIST = [
   },
   {
     position: 'Back-end',
-    member: [{ name: '김다빈' }, { name: '김도훈' }, { name: '' }],
+    member: [{ name: '이다빈' }, { name: '김도훈' }, { name: '' }],
     github: 'Back-End github repository',
     githubLink:
       'https://github.com/wecode-bootcamp-korea/25-2nd-MEGAFOX-backend',
