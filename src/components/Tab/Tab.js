@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { FlexCenter, FlexAround } from 'styles/mixin';
+import styled from 'styled-components/macro';
+import { FlexAround } from 'styles/mixin';
 
-function Tab() {
+function Tab({ TabOn }) {
   const [tab, setTab] = useState([]);
+  const [tabActive, setTabActive] = useState(0);
 
   useEffect(() => {
     fetch('data/TabData.json')
@@ -15,10 +15,15 @@ function Tab() {
   return (
     <TabMenuContainer>
       <TabMenu>
-        {tab.map(menu => {
+        {tab.map((menu, idx) => {
           return (
-            <TabMenuList key={menu.id}>
-              <MenuLink to="/">{menu.menu}</MenuLink>
+            <TabMenuList
+              key={menu.id}
+              onClick={() => {
+                console.log(idx);
+              }}
+            >
+              {menu.menu}
             </TabMenuList>
           );
         })}
@@ -30,6 +35,7 @@ function Tab() {
 const TabMenuContainer = styled.div`
   max-width: 1100px;
   margin: 0 auto;
+  padding-top: 40px;
 `;
 
 const TabMenu = styled.ul`
@@ -38,12 +44,14 @@ const TabMenu = styled.ul`
 
 const TabMenuList = styled.li`
   width: 20%;
-  border: 1px solid;
+  padding: 10px;
   text-align: center;
-`;
+  color: #222;
+  border: 1px solid #ebebeb;
 
-const MenuLink = styled.a`
-  text-decoration: none;
+  &:not(:last-child) {
+    border-right: none;
+  }
 `;
 
 export default Tab;
