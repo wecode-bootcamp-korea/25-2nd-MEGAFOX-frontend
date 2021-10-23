@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import MOVIES_DATA from 'data/MoviesData';
 import BoxoffBoxofficeMovie from './BoxofficeMovie/BoxofficeMovie';
 import styled, { keyframes } from 'styled-components';
+//import useFetch from 'hooks/useFetch';
 
 export default function Boxoffice() {
+  //서버 열어줄 때 사용할 api fetch 코드
+  //const movieData = useFetch('movie');
   const boxofficeMovies = MOVIES_DATA.slice(0, 4);
 
   return (
@@ -30,14 +34,14 @@ export default function Boxoffice() {
         </div>
         <div>
           <MenuLink to="/booking">
-            <i class="fas fa-ticket-alt" />
+            <i className="fas fa-ticket-alt" />
             빠른 예매
           </MenuLink>
         </div>
       </BoxOffiesMenus>
 
       <MouseScroll>
-        <i class="fas fa-mouse" />
+        <i className="fas fa-mouse" />
       </MouseScroll>
     </BoxofficeWrap>
   );
