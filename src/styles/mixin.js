@@ -1,18 +1,18 @@
 import { css } from 'styled-components';
 
-export const FlexCenter = css`
+export const flexCenter = css`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const FlexAround = css`
+export const flexAround = css`
   display: flex;
   justify-content: space-around;
   align-items: center;
 `;
 
-export const FlexBetween = css`
+export const flexBetween = css`
   display: flex;
   align-items: center;
   justify-content: space-between;

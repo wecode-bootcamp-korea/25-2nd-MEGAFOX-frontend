@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FlexCenter, FlexAround } from 'styles/mixin';
+import { flexCenter } from 'styles/mixin';
 
 function Movies() {
   return (
@@ -323,7 +323,7 @@ const BookingBtn = styled.button`
 `;
 
 const SeeMore = styled.button`
-  ${FlexCenter};
+  ${flexCenter};
   width: 100%;
   padding: 10px 15px;
   margin-top: 40px;
