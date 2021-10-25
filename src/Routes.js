@@ -9,6 +9,7 @@ import MoviesInfo from 'pages/Movies/MoviesInfo';
 import Header from 'components/Header/Header';
 import Footer from 'components/Footer';
 import Tab from 'components/Tab/Tab';
+import Booking from 'pages/Booking/Booking';
 
 class Routes extends React.Component {
   render() {
@@ -24,6 +25,7 @@ class Routes extends React.Component {
           <Route exact path="/oauth/kakao" component={KakaoRedirect} />
           <Route exact path="/info" component={MoviesInfo} />
           <Route exact path="/tab" component={Tab} />
+          <Route exact path="/booking" component={Booking} />
         </Switch>
         <Footer />
       </Router>

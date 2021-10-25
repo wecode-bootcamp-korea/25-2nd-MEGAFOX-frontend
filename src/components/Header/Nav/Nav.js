@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import NAV_DATA from './NavData';
+import NAV_DATA from './navData';
 import TopMenu from './TopMenu/TopMenu';
 import SubMenu from './SubMenu/SubMenu';
 import QuickMenu from './QuickMenu/QuickMenu';
