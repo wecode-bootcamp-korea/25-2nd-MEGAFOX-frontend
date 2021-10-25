@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexBetween } from 'styles/mixin';
+import { flexBetween } from 'styles/mixin';
 
 function MoviesInfo() {
   return (
@@ -296,7 +296,7 @@ const MyReview = styled.div`
 `;
 
 const MyStory = styled.div`
-  ${FlexBetween}
+  ${flexBetween}
   width: 93%;
   padding: 25px;
   margin-left: 25px;
@@ -345,7 +345,7 @@ const AnotherUserId = styled.div`
 `;
 
 const AnotherUserComment = styled.div`
-  ${FlexBetween};
+  ${flexBetween};
   width: 95%;
   margin-left: 23px;
   padding: 25px;
@@ -368,7 +368,7 @@ const AnotherUserLine = styled.span`
 `;
 
 const AnotherUserWrite = styled.div`
-  ${FlexBetween};
+  ${flexBetween};
   width: 80%;
 
   p {
