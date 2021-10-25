@@ -4,7 +4,7 @@ export const API = {
   login: BASE_URL + '/users/kakao/signin',
   movie: BASE_URL + '/movie',
   movie_detail: BASE_URL + '/movie/',
-  theater_list: BASE_URL + '/theater/list',
+  theater_list: BASE_URL + '/theaters',
 };
 
 export const REDIRECT_URI = 'http://localhost:3000/oauth/kakao';
