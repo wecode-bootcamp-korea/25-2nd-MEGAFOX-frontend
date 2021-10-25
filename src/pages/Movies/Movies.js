@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 // import useFetch from 'hooks/useFetch';
 import { Link } from 'react-router-dom';
 import Tab from 'components/Tab/Tab.js';
 import styled from 'styled-components/macro';
+=======
+import React from 'react';
+import styled from 'styled-components';
+>>>>>>> b7fe03a... Fix: API 주소 변경 및 렌더 예외 처리
 import { flexCenter } from 'styles/mixin';
 
 const LIMIT = 4;

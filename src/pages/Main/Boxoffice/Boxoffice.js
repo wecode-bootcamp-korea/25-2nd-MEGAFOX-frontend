@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import MOVIES_DATA from 'data/MoviesData';
 import BoxoffBoxofficeMovie from './BoxofficeMovie/BoxofficeMovie';
@@ -10,9 +10,6 @@ export default function Boxoffice() {
 
   if (movieData === undefined) return null;
   const boxofficeMovies = movieData.slice(0, 4);
-
-  //서버 닫혔을 때 사용
-  //const boxofficeMovies = MOVIES_DATA.slice(0, 4);
 
   return (
     <BoxofficeWrap>

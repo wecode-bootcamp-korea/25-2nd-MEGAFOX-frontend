@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import useFetch from 'hooks/useFetch';
 import styled, { css } from 'styled-components';
 import GoTopBtn from 'components/GoTopBtn/GoTopBtn';
 import Button from './components/Button';
 import Login from '../Login/Login';
+import { Link } from 'react-router-dom';
+import { getToken } from 'functions/handleToken';
 
 export default function Theater() {
   const cityTheaterList = useFetch('theater_list');
@@ -48,13 +49,15 @@ export default function Theater() {
               })}
           </TheaterUnorderedList>
         </TheaterListWrapper>
-        <UserTheater>
-          <i className="fas fa-bookmark" />
-          <span>나의 선호영화관 정보</span>
-          <UserLoginBtn onClick={() => setActiveLogin(true)}>
-            로그인하기
-          </UserLoginBtn>
-        </UserTheater>
+        {!getToken() && (
+          <UserTheater>
+            <i className="fas fa-bookmark" />
+            <span>나의 선호영화관 정보</span>
+            <UserLoginBtn onClick={() => setActiveLogin(true)}>
+              로그인하기
+            </UserLoginBtn>
+          </UserTheater>
+        )}
       </TheaterBox>
       {activeLogin && <Login closeLogin={closeLogin} />}
       <H3>
