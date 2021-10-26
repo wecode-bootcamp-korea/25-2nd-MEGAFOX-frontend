@@ -9,15 +9,15 @@ export default function Footer() {
 
         <div>
           {MEGAFOX_MEMBER_LIST.map(
-            ({ id, position, member, github, githubLink }) => {
+            ({ position, member, github, githubLink }, idx) => {
               return (
-                <MemberList key={id}>
+                <MemberList key={idx}>
                   <Github href={githubLink} target="_blank">
                     {github}
                   </Github>
                   <Position>{position}</Position>
-                  {member.map(({ id, name }) => {
-                    return <Member key={id}>{name}</Member>;
+                  {member.map(({ name }, idx) => {
+                    return <Member key={idx}>{name}</Member>;
                   })}
                 </MemberList>
               );

@@ -3,27 +3,33 @@ import { Link } from 'react-router-dom';
 import MOVIES_DATA from 'data/MoviesData';
 import BoxoffBoxofficeMovie from './BoxofficeMovie/BoxofficeMovie';
 import styled, { keyframes } from 'styled-components';
-//import useFetch from 'hooks/useFetch';
+import useFetch from 'hooks/useFetch';
 
 export default function Boxoffice() {
-  //서버 열어줄 때 사용할 api fetch 코드
-  //const movieData = useFetch('movie');
-  const boxofficeMovies = MOVIES_DATA.slice(0, 4);
+  const movieData = useFetch('movie');
+
+  if (movieData === undefined) return null;
+  const boxofficeMovies = movieData.slice(0, 4);
+
+  //서버 닫혔을 때 사용
+  //const boxofficeMovies = MOVIES_DATA.slice(0, 4);
 
   return (
     <BoxofficeWrap>
       <SectionTitle>박스 오피스</SectionTitle>
       <BoxofficeList>
-        {boxofficeMovies.map(({ id, image, like, description }) => {
-          return (
-            <BoxoffBoxofficeMovie
-              key={id}
-              image={image[0].main_image_url}
-              like={like}
-              description={description}
-            />
-          );
-        })}
+        {boxofficeMovies &&
+          boxofficeMovies.map(({ movie_id, image, like, description }) => {
+            return (
+              <BoxoffBoxofficeMovie
+                key={movie_id}
+                movieId={movie_id}
+                image={image[0].main_image_url}
+                like={like}
+                description={description}
+              />
+            );
+          })}
       </BoxofficeList>
       <BoxOffiesMenus>
         <div>

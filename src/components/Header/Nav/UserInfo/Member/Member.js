@@ -2,14 +2,39 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 class Member extends Component {
+  constructor() {
+    super();
+    this.state = {
+      userInfo: {
+        name: '',
+        point: 0,
+        booked: 0,
+      },
+    };
+  }
+
+  componentDidMount() {
+    const token = window.localStorage.token;
+    if (token) {
+      fetch(`./data/UserInfoData.json`)
+        .then(res => res.json())
+        .then(data => {
+          this.setState({
+            userInfo: data,
+          });
+        });
+    }
+  }
+
   render() {
+    const { userInfo } = this.state;
     return (
       <IsMember>
         <UserBasicInfo>
           <UserHello>
             안녕하세요!
             <br />
-            <UserName>강단</UserName> 회원님
+            <UserName>{userInfo.name}</UserName> 회원님
             <br />
             마지막 접속일 : 2021-10-20 19:06:56
           </UserHello>
@@ -18,13 +43,13 @@ class Member extends Component {
 
         <Points>
           <InfoTitle>포인트</InfoTitle>
-          <Counted>0</Counted>
+          <Counted>{userInfo.point}</Counted>
           <UserInfoButton>멤버십 포인트</UserInfoButton>
         </Points>
 
         <Booked>
           <InfoTitle>예매</InfoTitle>
-          <Counted>0 건</Counted>
+          <Counted>{userInfo.booked} 건</Counted>
           <UserInfoButton>예매내역</UserInfoButton>
         </Booked>
       </IsMember>

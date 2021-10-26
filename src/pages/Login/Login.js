@@ -72,7 +72,7 @@ const Ad = styled.em`
 `;
 
 const LoginBtn = styled.button`
-  witdh: 100%;
+  width: 100%;
   height: 40px;
   padding: 0 30px;
   border: none;

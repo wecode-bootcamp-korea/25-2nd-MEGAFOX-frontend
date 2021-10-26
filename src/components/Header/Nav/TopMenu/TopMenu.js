@@ -1,67 +1,92 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Login from 'pages/Login';
 
 class TopMenu extends Component {
   constructor() {
     super();
     this.state = {
       isToken: false,
+      openModal: false,
     };
   }
 
-  // 테스트 토큰
-  getToken = () => {
+  openLogin = () => {
     if (!window.localStorage.token) {
-      window.localStorage.setItem('token', 'myToken');
       this.setState({
-        isToken: true,
+        openModal: true,
       });
-    } else {
-      window.localStorage.removeItem('token');
-      this.setState({
-        isToken: false,
-      });
+      setTimeout(() => {
+        this.hasToken();
+      }, 2000);
     }
   };
 
+  hasToken = () => {
+    if (window.localStorage.token) {
+      this.setState({
+        isToken: true,
+      });
+      this.closeModal();
+    }
+  };
+
+  closeModal = () => {
+    this.setState({
+      openModal: false,
+    });
+  };
+
+  removeToken = () => {
+    window.localStorage.clear();
+    this.setState({
+      isToken: false,
+    });
+    alert('로그아웃 되었습니다.');
+  };
+
   render() {
-    const { isToken } = this.state;
+    const { openModal } = this.state;
+    const checkToken = window.localStorage.token;
     return (
-      <TopMenuWrap>
-        <TopMenuList>
-          <LeftMenu>
-            <List>
-              <TopMenuLink to="#n">VIP LOUNGE</TopMenuLink>
-            </List>
-            <List>
-              <TopMenuLink to="#n">멤버십</TopMenuLink>
-            </List>
-            <List>
-              <TopMenuLink to="#n">고객센터</TopMenuLink>
-            </List>
-          </LeftMenu>
-          <RightMenu>
-            <List>
-              {isToken ? (
-                <TopMenuLink to="#n" onClick={this.getToken}>
-                  로그아웃
-                </TopMenuLink>
-              ) : (
-                <TopMenuLink to="#n" onClick={this.getToken}>
-                  로그인
-                </TopMenuLink>
-              )}
-            </List>
-            <List>
-              <TopMenuLink to="#n">회원가입</TopMenuLink>
-            </List>
-            <List>
-              <TopMenuLink to="#n">빠른예매</TopMenuLink>
-            </List>
-          </RightMenu>
-        </TopMenuList>
-      </TopMenuWrap>
+      <>
+        <TopMenuWrap>
+          <TopMenuList>
+            <LeftMenu>
+              <List>
+                <TopMenuLink to="#n">VIP LOUNGE</TopMenuLink>
+              </List>
+              <List>
+                <TopMenuLink to="#n">멤버십</TopMenuLink>
+              </List>
+              <List>
+                <TopMenuLink to="#n">고객센터</TopMenuLink>
+              </List>
+            </LeftMenu>
+            <RightMenu>
+              <List>
+                {!checkToken ? (
+                  <TopMenuLink to="#n" onClick={this.openLogin}>
+                    로그인
+                  </TopMenuLink>
+                ) : (
+                  <TopMenuLink to="#n" onClick={this.removeToken}>
+                    로그아웃
+                  </TopMenuLink>
+                )}
+              </List>
+              <List>
+                <TopMenuLink to="#n">회원가입</TopMenuLink>
+              </List>
+              <List>
+                <TopMenuLink to="#n">빠른예매</TopMenuLink>
+              </List>
+            </RightMenu>
+          </TopMenuList>
+        </TopMenuWrap>
+        {openModal && <Login closeLogin={this.closeModal} />}
+      </>
     );
   }
 }

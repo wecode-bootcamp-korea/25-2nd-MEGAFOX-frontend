@@ -1,4 +1,4 @@
-const BASE_URL = 'http://10.58.3.19:8000';
+const BASE_URL = 'http://3.36.66.16:8000';
 
 export const API = {
   login: BASE_URL + '/users/kakao/signin',

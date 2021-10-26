@@ -2,21 +2,31 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function BoxofficeMovie({ id, image, like, description }) {
+export default function BoxofficeMovie({ movie_id, image, like, description }) {
   const [isMouseOver, setIsMouseOver] = useState(false);
 
-  const onHover = id => {
+  const onHover = () => {
     setIsMouseOver(!isMouseOver);
   };
 
+  const goToPage = movie_id => {
+    const { history } = this.props;
+    history.push(`/movie/${movie_id}`);
+  };
+
   return (
-    <MoviesList key={id}>
+    <MoviesList>
       <MovieThumbnail
-        onMouseEnter={() => onHover(id)}
-        onMouseLeave={() => onHover(id)}
+        onClick={() => goToPage(movie_id)}
+        onMouseEnter={() => onHover()}
+        onMouseLeave={() => onHover()}
       >
         <MoviesPoster alt="movies poster" src={image} />
-        {isMouseOver && <HoveredInfo>{description}</HoveredInfo>}
+        {isMouseOver && (
+          <HoveredInfo>
+            <p>{description}</p>
+          </HoveredInfo>
+        )}
       </MovieThumbnail>
       <MoviesBtn>
         <LikeBtn>
@@ -24,7 +34,7 @@ export default function BoxofficeMovie({ id, image, like, description }) {
           <p>{like}</p>
         </LikeBtn>
 
-        <BookingBtn>
+        <BookingBtn to="/booking">
           <p>예매</p>
         </BookingBtn>
       </MoviesBtn>
@@ -39,8 +49,9 @@ const MoviesList = styled.li`
   margin: 0 10px;
 `;
 
-const MovieThumbnail = styled(Link)`
+const MovieThumbnail = styled.div`
   position: relative;
+  cursor: pointer;
 `;
 
 const MoviesPoster = styled.img`
@@ -62,9 +73,17 @@ const HoveredInfo = styled.div`
   line-height: 25px;
   text-align: left;
   border-radius: 5px;
+
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+  }
 `;
 
-const BookingBtn = styled.button`
+const BookingBtn = styled(Link)`
   width: 75%;
   padding: 10px 0;
   border: transparent;
@@ -72,7 +91,9 @@ const BookingBtn = styled.button`
   background: #037b94;
   color: white;
   font-size: 15px;
+  line-height: 19px;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     background: #351f67;

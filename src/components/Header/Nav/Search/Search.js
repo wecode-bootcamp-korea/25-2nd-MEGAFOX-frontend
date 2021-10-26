@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import MOVIE_DATA from './MovieData';
 
@@ -8,6 +8,7 @@ class Search extends Component {
     super();
     this.state = {
       hoveredMoiveId: 0,
+      movieTitle: '',
     };
   }
 
@@ -15,6 +16,22 @@ class Search extends Component {
     this.setState({
       hoveredMoiveId: id,
     });
+  };
+
+  handleInput = e => {
+    this.setState({
+      movieTitle: e.target.value,
+    });
+  };
+
+  goToMovie = () => {
+    const { movieTitle } = this.state;
+    const { history } = this.props;
+    if (0 < movieTitle.length) {
+      history.push('/movies');
+    } else {
+      alert('영화 이름을 입력하세요');
+    }
   };
 
   render() {
@@ -44,8 +61,12 @@ class Search extends Component {
             </RankList>
           </MovieRank>
           <SearchBar>
-            <SearchInput type="text" placeholder="영화를 검색하세요" />
-            <SearchButton>
+            <SearchInput
+              type="text"
+              placeholder="영화를 검색하세요"
+              onChange={this.handleInput}
+            />
+            <SearchButton onClick={this.goToMovie}>
               <i className="fas fa-search" />
             </SearchButton>
           </SearchBar>
@@ -136,7 +157,7 @@ const SearchInput = styled.input`
   }
 `;
 
-const SearchButton = styled(Link)`
+const SearchButton = styled.button`
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -153,4 +174,4 @@ const SearchButton = styled(Link)`
   }
 `;
 
-export default Search;
+export default withRouter(Search);

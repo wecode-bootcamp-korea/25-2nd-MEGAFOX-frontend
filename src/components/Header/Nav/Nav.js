@@ -46,7 +46,9 @@ class Nav extends Component {
                   <List onMouseEnter={() => this.setHoverMenu(id)}>
                     <NavLink to={link}>{name}</NavLink>
                   </List>
-                  {id === hoveredMenuId && <SubMenu menu={menu} />}
+                  {id === hoveredMenuId && isMouseOver === true ? (
+                    <SubMenu menu={menu} />
+                  ) : null}
                 </React.Fragment>
               );
             })}
