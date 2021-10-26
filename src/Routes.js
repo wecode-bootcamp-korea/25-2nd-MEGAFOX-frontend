@@ -7,7 +7,7 @@ import Header from 'components/Header/Header';
 import Footer from 'components/Footer';
 import KakaoRedirect from 'pages/KakaoRedirect';
 import MoviesInfo from 'pages/Movies/MoviesInfo';
-import { Theater } from 'pages/Theater/Theater';
+import Tab from 'components/Tab/Tab';
 
 class Routes extends React.Component {
   render() {
@@ -21,6 +21,7 @@ class Routes extends React.Component {
           <Route exact path="/theater/list" component={Theater} />
           <Route exact path="/oauth/kakao" component={KakaoRedirect} />
           <Route exact path="/info" component={MoviesInfo} />
+          <Route exact path="/tab" component={Tab} />
         </Switch>
         <Footer />
       </Router>
