@@ -14,11 +14,12 @@ export default function Modal({ children, closeModal }) {
 }
 
 const StyledModal = styled.div`
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 2px 2px 6px 2px rgb(0 0 0 / 10%);
+  z-index: 999;
 `;
 
 const Header = styled.div`
@@ -27,6 +28,10 @@ const Header = styled.div`
   padding: 15px;
   background-color: ${({ theme }) => theme.purple};
   color: white;
+
+  span:nth-child(2) {
+    cursor: pointer;
+  }
 `;
 
 const Content = styled.div`

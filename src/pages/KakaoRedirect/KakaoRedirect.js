@@ -31,7 +31,7 @@ export default function KakaoRedirect() {
         })
           .then(res => res.json())
           .then(ourToken => {
-            localStorage.setItem('token', ourToken.access_token);
+            localStorage.setItem('token', ourToken.message);
             window.close();
           });
       });

@@ -7,7 +7,15 @@ export default function Benefits() {
     <BenefitsWrap>
       <SectionTitle>혜택</SectionTitle>
       <BenefitsContent>
-        <Slider>슬라이드</Slider>
+        <Slider>
+          <iframe
+            width="100%"
+            height="100%"
+            src="https://www.youtube.com/embed/-5Dc8EMVYBo"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          />
+        </Slider>
         <BenefitBanner to="#n">
           <p>
             WE
@@ -40,6 +48,7 @@ const BenefitsContent = styled.div`
 
   & > div,
   & > a {
+    overflow: hidden;
     border-radius: 10px;
     box-shadow: 2px 2px 4px #999;
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import SiteMap from './../SiteMap/SiteMap';
 import Search from '../Search/Search';
@@ -22,6 +23,11 @@ class QuickMenu extends Component {
         [name]: !prevState.isClicked[name],
       },
     }));
+  };
+
+  goToTheater = () => {
+    const { history } = this.props;
+    history.push('/theater/list');
   };
 
   render() {
@@ -55,7 +61,7 @@ class QuickMenu extends Component {
             </LeftLinks>
 
             <RightLinks className="linkArea">
-              <QuickMenuButton to="/n">
+              <QuickMenuButton to="/theater/list" onClick={this.goToTheater}>
                 <i className="far fa-calendar-alt" />
                 상영시간표 바로가기
               </QuickMenuButton>
@@ -129,4 +135,4 @@ const QuickMenuButton = styled.button`
   }
 `;
 
-export default QuickMenu;
+export default withRouter(QuickMenu);

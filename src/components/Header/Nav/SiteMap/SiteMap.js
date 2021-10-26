@@ -10,7 +10,7 @@ class SiteMap extends Component {
         <SiteMapInner>
           <SiteMapTitle>SITEMAP</SiteMapTitle>
           <SiteMapList>
-            {NAV_DATA.map(({ id, name, menu }) => {
+            {NAV_DATA.map(({ id, name, link, menu }) => {
               return (
                 <Page key={id}>
                   <PageTitle>{name}</PageTitle>
@@ -18,7 +18,7 @@ class SiteMap extends Component {
                     {menu.map(({ id, name }) => {
                       return (
                         <SubPage key={id}>
-                          <SubPageLink to="#n">{name}</SubPageLink>
+                          <SubPageLink to={link}>{name}</SubPageLink>
                         </SubPage>
                       );
                     })}

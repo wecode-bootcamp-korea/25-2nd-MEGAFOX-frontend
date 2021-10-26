@@ -4,7 +4,7 @@ const NAV_DATA = [
     name: '영화',
     link: '/movies',
     menu: [
-      { id: 0, name: '전체영화', link: '#n' },
+      { id: 0, name: '전체영화', link: '/movies' },
       { id: 1, name: 'N스크린', link: '#n' },
       { id: 2, name: '큐레이션', link: '#n' },
       { id: 3, name: '영화제', link: '#n' },
@@ -13,9 +13,9 @@ const NAV_DATA = [
   {
     id: 1,
     name: '예매',
-    link: '#n',
+    link: '/booking',
     menu: [
-      { id: 0, name: '빠른예매', link: '#n' },
+      { id: 0, name: '빠른예매', link: '/booking/booking' },
       { id: 1, name: '상영시간표', link: '#n' },
       { id: 2, name: '더 부티크 프라이빗 예매', link: '#n' },
     ],
@@ -23,9 +23,9 @@ const NAV_DATA = [
   {
     id: 2,
     name: '극장',
-    link: '#n',
+    link: '/theater/list',
     menu: [
-      { id: 0, name: '전체극장', link: '#n' },
+      { id: 0, name: '전체극장', link: '/theater/list' },
       { id: 1, name: '특별관', link: '#n' },
     ],
   },
