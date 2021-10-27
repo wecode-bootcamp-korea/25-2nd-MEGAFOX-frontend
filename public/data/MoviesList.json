@@ -1,0 +1,58 @@
+[
+  {
+    "age_rate": "청소년관람불가",
+    "avg_rating": null,
+    "description": "히어로의 시대는 끝났다\n‘베놈’과 완벽한 파트너가 된 ‘에디 브록’(톰 하디) 앞에 ‘클리터스 캐서디’(우디 해럴슨)가 ‘카니지’로 등장,\n앞으로 닥칠 대혼돈의 세상을 예고한다.\n대혼돈의 시대가 시작되고,\n악을 악으로 처단할 것인가",
+    "image": [
+      {
+        "main_image_url": "https://img.megabox.co.kr/SharedImg/2021/09/29/fl6qV6UG8faiMppMO4LZp9VZlohic35T_420.jpg"
+      }
+    ],
+    "ko_name": "베놈 2: 렛 데어 비 카니지",
+    "like": 0,
+    "movie_id": 2,
+    "release_date": "2021-10-13"
+  },
+  {
+    "age_rate": "12세이상관람가",
+    "avg_rating": null,
+    "description": "가장 강력한 운명의 적과 마주하게된 제임스 본드의 마지막 미션이 시작된다",
+    "image": [
+      {
+        "main_image_url": "https://img.megabox.co.kr/SharedImg/2021/10/01/lZ52BaiDFcKH76xboKAvh7oYqAoU9qhf_420.jpg"
+      }
+    ],
+    "ko_name": "007 노 타임 투 다이",
+    "like": 0,
+    "movie_id": 9,
+    "release_date": "2021-09-29"
+  },
+  {
+    "age_rate": "12세이상관람가",
+    "avg_rating": null,
+    "description": "세르비아의 작은 시골마을.\n부당해고를 당해 일용직으로 근근이 하루를 살아가고 있는 두 아이의 아버지 니콜라.\n가난과 배고픔을 견디다 못한 아내는 회사에 대한 분노로 극단적인 행동을 하게 되고,\n부패한 사회 복지과는 자신들의 이득만을 위해 두 아이들의 양육권을 부모에게서 빼앗아 버린다.\n가족을 지키기 위한 힘든 노력에도 불구하고 결국 아이들을 빼앗겨 버린 니콜라는\n그 누구도 믿을 수 없는 상황에서 가족을 지키기 위한 단 하나의 일념으로\n300km가 넘는 거리인 수도 베오그라드까지의 긴 여정을 결심한다.\n\n모든 불가능함에도 불구하고,\n자신의 아이들을 되찾을 권리와 정의를 위해\n아버지 니콜라는 걸음을 멈추지 않는다.",
+    "image": [
+      {
+        "main_image_url": "https://img.megabox.co.kr/SharedImg/2021/09/27/S15mIw5eBXs9ehKP9AzuLIJcbrkD3eAz_420.jpg"
+      }
+    ],
+    "ko_name": "아버지의 길",
+    "like": 0,
+    "movie_id": 10,
+    "release_date": "2021-09-30"
+  },
+  {
+    "age_rate": "15세이상관람가",
+    "avg_rating": null,
+    "description": "'하나, 둘, 셋. 숨을 내쉴 때마다 몸이 가벼워집니다. 먼지처럼!'\n\n자신의 특별한 능력을 통해 사람들의 마음 속 슬픔과 갈망을 들여다보는 최면술사 '제니아'.\n그의 능력은 순식간에 입소문을 타고 폴란드 바르샤바의 한마을이 떠들썩해진다.\n모두가 그를 만나고 싶어 혈안이 된 가운데, 미스터리에 감추어진 '제니아'의 최면술이 사람들을 사로잡기 시작한다.\n\n\"당신의 불행과 고통을 몰아내는 중입니다. 제가 셋을 세면 눈을 뜹니다. 하나, 둘, 셋, 탁!\"",
+    "image": [
+      {
+        "main_image_url": "https://img.megabox.co.kr/SharedImg/2021/09/30/CzRTI6ZB3RRD6OiDHowUr7btI0AcvOsj_420.jpg"
+      }
+    ],
+    "ko_name": "첫눈이 사라졌다",
+    "like": 0,
+    "movie_id": 3,
+    "release_date": "2021-10-20"
+  }
+]

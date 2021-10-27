@@ -1,21 +1,72 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+// import useFetch from 'hooks/useFetch';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import Tab from 'components/Tab/Tab.js';
+import styled from 'styled-components/macro';
 import { flexCenter } from 'styles/mixin';
 
+const LIMIT = 4;
+
 function Movies() {
+  const [moviePosterList, setMoviePosterList] = useState([]);
+
+  const [tab, setTab] = useState([]);
+  const [tabCurrent, setTabCurrent] = useState(1);
+
+  const [offset, setOffset] = useState(0);
+
+  const toggleTab = idx => {
+    setTabCurrent(idx);
+  };
+
+  // custom hook
+  // const data = useFetch('movie');
+
+  useEffect(() => {
+    fetch(
+      `http://3.36.66.16:8000/movie?limit=${LIMIT}&offset=${offset * LIMIT}`
+    )
+      .then(res => res.json())
+      .then(res => setMoviePosterList(prev => [...prev, ...res]));
+  }, [offset]);
+
+  useEffect(() => {
+    fetch('data/TabData.json')
+      .then(res => res.json())
+      .then(res => setTab(res));
+  }, []);
+
+  const findMovie = () => {
+    setOffset(offset + 1);
+  };
+
+  const ageLimit = age => {
+    if (age === '12세이상관람가') {
+      return '#188ef7';
+    }
+    if (age === '15세이상관람가') {
+      return '#eba010';
+    }
+    if (age === '전체관람가') {
+      return '#3fa701';
+    }
+    if (age === '청소년관람불가') {
+      return '#e81002';
+    }
+  };
+
   return (
     <MoviesContainer>
       <MoviesLayout>
         <MoviesTitle>전체영화</MoviesTitle>
-
+        <Tab tabList={tab} selectedTab={tabCurrent} toggleTab={toggleTab} />
         <MoviesSearchContents>
           <MoviesSearchNewRelease>
             <NewReleaseBtn>
               <span />
             </NewReleaseBtn>
             <p>개봉작만</p>
-            <p>112개의 영화가 검색되었습니다.</p>
+            <p>10개의 영화가 검색되었습니다.</p>
           </MoviesSearchNewRelease>
 
           <MoviesSearch>
@@ -25,114 +76,61 @@ function Movies() {
             </button>
           </MoviesSearch>
         </MoviesSearchContents>
-
         <MoviesListContainer>
-          <MoviesList>
-            <MoviesPoster alt="movies poster" />
+          {moviePosterList?.map(info => {
+            return (
+              <MoviesList key={info.movie_id}>
+                <MoviesSummaryContainer>
+                  <Link to={`/movie-info/${info.movie_id}`}>
+                    <MoviesPoster
+                      src={info.image[0].main_image_url}
+                      alt={info.ko_name}
+                    />
+                    <MoviesSummary>
+                      <p>{info.description}</p>
+                    </MoviesSummary>
+                  </Link>
+                </MoviesSummaryContainer>
 
-            <MoviesListTitle>
-              <MoviesAge>12</MoviesAge>
-              <h3>듄</h3>
-            </MoviesListTitle>
+                <MoviesListTitle>
+                  <MoviesAge age={ageLimit(info.age_rate)}>
+                    {(() => {
+                      if (parseInt(info.age_rate, 10)) {
+                        return parseInt(info.age_rate, 10);
+                      } else {
+                        if (info.age_rate === '청소년관람불가') {
+                          return '청불';
+                        }
+                        if (info.age_rate === '전체관람가') {
+                          return '전체';
+                        }
+                      }
+                    })()}
+                  </MoviesAge>
+                  <h3>{info.ko_name}</h3>
+                </MoviesListTitle>
+                <MoviesInfo>
+                  <p>예매율 13.6%</p>
+                  <span />
+                  <p>{info.release_date}</p>
+                </MoviesInfo>
+                <MoviesBtn>
+                  <LikeBtn>
+                    <i className="far fa-heart" />
+                    <p>{info.like}</p>
+                  </LikeBtn>
 
-            <MoviesInfo>
-              <p>예매율 45.9%</p>
-              <span />
-              <p>개봉일 2021.10.20</p>
-            </MoviesInfo>
-
-            <MoviesBtn>
-              <LikeBtn>
-                <i className="far fa-heart" />
-                <p>963</p>
-              </LikeBtn>
-
-              <BookingBtn>
-                <p>예매</p>
-              </BookingBtn>
-            </MoviesBtn>
-          </MoviesList>
-
-          <MoviesList>
-            <MoviesPoster alt="movies poster" />
-
-            <MoviesListTitle>
-              <MoviesAge>12</MoviesAge>
-              <h3>듄</h3>
-            </MoviesListTitle>
-
-            <MoviesInfo>
-              <p>예매율 45.9%</p>
-              <span />
-              <p>개봉일 2021.10.20</p>
-            </MoviesInfo>
-
-            <MoviesBtn>
-              <LikeBtn>
-                <i className="far fa-heart" />
-                <p>963</p>
-              </LikeBtn>
-
-              <BookingBtn>
-                <p>예매</p>
-              </BookingBtn>
-            </MoviesBtn>
-          </MoviesList>
-
-          <MoviesList>
-            <MoviesPoster alt="movies poster" />
-
-            <MoviesListTitle>
-              <MoviesAge>12</MoviesAge>
-              <h3>듄</h3>
-            </MoviesListTitle>
-
-            <MoviesInfo>
-              <p>예매율 45.9%</p>
-              <span />
-              <p>개봉일 2021.10.20</p>
-            </MoviesInfo>
-
-            <MoviesBtn>
-              <LikeBtn>
-                <i className="far fa-heart" />
-                <p>963</p>
-              </LikeBtn>
-
-              <BookingBtn>
-                <p>예매</p>
-              </BookingBtn>
-            </MoviesBtn>
-          </MoviesList>
-
-          <MoviesList>
-            <MoviesPoster alt="movies poster" />
-
-            <MoviesListTitle>
-              <MoviesAge>12</MoviesAge>
-              <h3>듄</h3>
-            </MoviesListTitle>
-
-            <MoviesInfo>
-              <p>예매율 45.9%</p>
-              <span />
-              <p>개봉일 2021.10.20</p>
-            </MoviesInfo>
-
-            <MoviesBtn>
-              <LikeBtn>
-                <i className="far fa-heart" />
-                <p>963</p>
-              </LikeBtn>
-
-              <BookingBtn>
-                <p>예매</p>
-              </BookingBtn>
-            </MoviesBtn>
-          </MoviesList>
+                  <BookingLink to="/booking">
+                    <BookingBtn>
+                      <p>예매</p>
+                    </BookingBtn>
+                  </BookingLink>
+                </MoviesBtn>
+              </MoviesList>
+            );
+          })}
         </MoviesListContainer>
-
-        <SeeMore>
+        <SeeMore onClick={findMovie}>
           더보기
           <i className="fas fa-chevron-down" />
         </SeeMore>
@@ -210,6 +208,10 @@ const MoviesSearch = styled.div`
     height: 34px;
     padding-left: 10px;
     border: transparent;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   button {
@@ -224,23 +226,59 @@ const MoviesSearch = styled.div`
       font-size: 16px;
       color: #929292;
     }
+
+    &:focus {
+      outline: none;
+    }
   }
 `;
 
 const MoviesListContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-`;
-
-const MoviesPoster = styled.img.attrs({
-  src: '/images/movies_poster1.jpeg',
-})`
-  height: 331px;
+  flex-wrap: wrap;
 `;
 
 const MoviesList = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 20%;
+  max-width: 22%;
+  margin-right: 30px;
+  margin-bottom: 60px;
+`;
+
+const MoviesPoster = styled.img`
+  width: 100%;
+`;
+
+const MoviesSummaryContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+
+const MoviesSummary = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 99%;
+  padding: 20px;
+  color: white;
+  line-height: 1.4;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+
+  p {
+    height: 150px;
+    font-size: 15px;
+    overflow: hidden;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const MoviesListTitle = styled.div`
@@ -249,9 +287,13 @@ const MoviesListTitle = styled.div`
   margin-top: 15px;
 
   h3 {
+    width: 70%;
     margin-left: 5px;
     font-size: 20px;
     font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;
 
@@ -259,18 +301,18 @@ const MoviesAge = styled.span`
   display: inline-block;
   width: 23px;
   height: 23px;
-  line-height: 1.9;
+  line-height: 2.2;
   border-radius: 50%;
   text-align: center;
-  font-size: 13px;
+  font-size: 11px;
   color: white;
-  background: #198ef7;
+  background: ${({ age }) => age};
 `;
 
 const MoviesInfo = styled.div`
   display: flex;
   margin-top: 10px;
-  font-size: 14.5px;
+  font-size: 16px;
 
   span {
     margin: 0 5px;
@@ -284,8 +326,7 @@ const MoviesBtn = styled.div`
 `;
 
 const LikeBtn = styled.button`
-  display: flex;
-  align-items: center;
+  ${flexCenter}
   width: 25%;
   padding: 5px;
   margin-right: 5px;
@@ -309,8 +350,13 @@ const LikeBtn = styled.button`
   }
 `;
 
+const BookingLink = styled.a`
+  width: 77%;
+  text-decoration: none;
+`;
+
 const BookingBtn = styled.button`
-  width: 75%;
+  width: 100%;
   padding: 5px;
   color: white;
   border: transparent;

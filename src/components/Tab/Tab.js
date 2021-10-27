@@ -9,7 +9,7 @@ function Tab({ tabList, selectedTab, toggleTab }) {
         {tabList.map(tab => {
           return (
             <TabMenuList
-              isSelected={selectedTab === tab}
+              isSelected={selectedTab === tab.id}
               key={tab.id}
               onClick={() => {
                 toggleTab(tab.id);
@@ -38,11 +38,11 @@ const TabMenuList = styled.li`
   width: 20%;
   padding: 10px;
   text-align: center;
-  color: #222;
+  color: ${({ isSelected, theme }) => (isSelected ? theme.purple : '#222')};
   border: 1px solid
     ${({ isSelected, theme }) => (isSelected ? theme.purple : '#ebebeb')};
   border-bottom: 1px solid
-    ${({ isSelected, theme }) => (isSelected ? 'none' : theme.purple)};
+    ${({ isSelected, theme }) => (isSelected ? 'transparent' : theme.purple)};
 
   cursor: pointer;
 `;
