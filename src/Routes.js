@@ -20,6 +20,7 @@ class Routes extends React.Component {
           <Route exact path="/main" component={Main} />
           <Route exact path="/" component={Main} />
           <Route exact path="/movies" component={Movies} />
+          <Route exact path="/movie-info/:id" component={MoviesInfo} />
           <Route exact path="/theater/list" component={Theater} />
           <Route exact path="/oauth/kakao" component={KakaoRedirect} />
           <Route exact path="/info" component={MoviesInfo} />

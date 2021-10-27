@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { flexBetween } from 'styles/mixin';
+import { flexBetween, flexCenter } from 'styles/mixin';
 
-function MoviesInfo() {
+function MoviesInfo({ match }) {
+  const [movie, setMovie] = useState({});
+
+  useEffect(() => {
+    fetch(`http://3.36.66.16:8000/movie/${match.params.id}`)
+      .then(res => res.json())
+      .then(res => {
+        setMovie(res[0]);
+      });
+  }, [match.params.id, setMovie]);
+
   return (
     <>
       <MoviesInfoContainer>
         <MoviesPosterInfo>
-          <MoviesBackground />
+          <MoviesBackground img={movie.images?.[0].main_image_url} />
           <MoviesInfoHeader>
             <MoviesInfoHeaderContainer>
               <MoviesHashtag>#돌비시네마 #빵원티켓+ #굿즈패키지</MoviesHashtag>
-              <h3>듄</h3>
-              <h4>DUNE</h4>
+              <h3>{movie.ko_name}</h3>
+              <h4>{movie.eng_name}</h4>
 
               <HeaderBtn>
                 <HeaderLike>
                   <i className="far fa-heart" />
-                  <p>982</p>
+                  <p>{movie.like}</p>
                 </HeaderLike>
 
                 <HeaderSharedBtn>
@@ -28,8 +39,13 @@ function MoviesInfo() {
             </MoviesInfoHeaderContainer>
 
             <MoviesContentInfo>
-              <MoviesImg />
-              <button>예매</button>
+              <MoviesImg
+                src={movie.images?.[0].main_image_url}
+                alt={movie.ko_name}
+              />
+              <Link to="/booking">
+                <button>예매</button>
+              </Link>
             </MoviesContentInfo>
           </MoviesInfoHeader>
 
@@ -54,17 +70,17 @@ function MoviesInfo() {
       </MoviesInfoContainer>
       <MoviesReview>
         <p>
-          듄에 대한 <span>1,543</span>개의 이야기가 있어요!
+          {movie.ko_name}에 대한 <span>1,543</span>개의 이야기가 있어요!
         </p>
         <ReviewContents>
           <MyReview>
-            <span>M</span>
-            <p>MEGABOX</p>
+            <span>F</span>
+            <p>MEGAFOX</p>
           </MyReview>
           <MyStory>
             <p>
-              <span>듄</span> 재미있게 보셨나요? 영화의 어떤 점이 좋았는지
-              이야기해주세요.
+              <span>{movie.ko_name}</span> 재미있게 보셨나요? 영화의 어떤 점이
+              좋았는지 이야기해주세요.
             </p>
 
             <MyStoryWrite>
@@ -120,7 +136,7 @@ const MoviesBackground = styled.div`
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  background: url('/images/movies_info_big_poster.jpg') no-repeat;
+  background: url(${({ img }) => img}) no-repeat;
   background-position: top center;
   background-size: 80% auto;
   filter: blur(5px);
@@ -229,6 +245,7 @@ const MoviesContentInfo = styled.div`
   height: 374px;
 
   button {
+    width: 100%;
     margin-top: 8px;
     padding: 10px;
     font-size: 18px;
@@ -240,9 +257,7 @@ const MoviesContentInfo = styled.div`
   }
 `;
 
-const MoviesImg = styled.img.attrs({
-  src: 'images/movies_info_small_poster.jpg',
-})`
+const MoviesImg = styled.img`
   border-radius: 10px;
 `;
 
@@ -272,7 +287,7 @@ const MyReview = styled.div`
   width: 6%;
 
   span {
-    display: inline-block;
+    ${flexCenter}
     width: 50px;
     height: 50px;
     margin: 0 auto 10px auto;
