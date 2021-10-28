@@ -7,7 +7,6 @@ class TopMenu extends Component {
   constructor() {
     super();
     this.state = {
-      isToken: false,
       openModal: false,
     };
   }
@@ -25,9 +24,6 @@ class TopMenu extends Component {
 
   hasToken = () => {
     if (window.localStorage.token) {
-      this.setState({
-        isToken: true,
-      });
       this.closeModal();
     }
   };
@@ -40,9 +36,6 @@ class TopMenu extends Component {
 
   removeToken = () => {
     window.localStorage.clear();
-    this.setState({
-      isToken: false,
-    });
     alert('로그아웃 되었습니다.');
   };
 

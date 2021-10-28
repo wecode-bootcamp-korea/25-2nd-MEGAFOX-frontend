@@ -38,7 +38,7 @@ const MainLink = styled(Link)`
   text-align: center;
   font-size: 0;
   color: #fff;
-  background-image: url('images/logo.png');
+  background-image: url('/images/logo.png');
   background-position: 0 bottom;
   background-repeat: no-repeat;
 `;
