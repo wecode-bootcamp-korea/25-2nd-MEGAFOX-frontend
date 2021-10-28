@@ -8,7 +8,7 @@ class Member extends Component {
       userInfo: {
         name: '',
         point: 0,
-        booked: 0,
+        booking: [],
       },
     };
   }
@@ -16,11 +16,16 @@ class Member extends Component {
   componentDidMount() {
     const token = window.localStorage.token;
     if (token) {
-      fetch(`./data/UserInfoData.json`)
+      fetch(`http://3.36.66.16:8000/users/info`, {
+        method: 'GET',
+        headers: {
+          Authorization: token,
+        },
+      })
         .then(res => res.json())
         .then(data => {
           this.setState({
-            userInfo: data,
+            userInfo: data.result,
           });
         });
     }
@@ -28,6 +33,8 @@ class Member extends Component {
 
   render() {
     const { userInfo } = this.state;
+    console.log(this.state.userInfo);
+
     return (
       <IsMember>
         <UserBasicInfo>
@@ -49,7 +56,7 @@ class Member extends Component {
 
         <Booked>
           <InfoTitle>예매</InfoTitle>
-          <Counted>{userInfo.booked} 건</Counted>
+          <Counted>{userInfo.booking.length} 건</Counted>
           <UserInfoButton>예매내역</UserInfoButton>
         </Booked>
       </IsMember>
