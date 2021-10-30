@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 import TimeBtn from './TimeBtn';
 
-export default function SelectTime({ movieListInfo }) {
+export default function SelectTime({ movieListInfo, handleReserveData }) {
   return (
     <StyledSelectTime>
       <Header>시간</Header>
       <TimeBtnWrapper>
         {movieListInfo.map((movieInfo, idx) => {
-          return <TimeBtn key={idx} movieInfo={movieInfo} />;
+          return (
+            <TimeBtn
+              key={idx}
+              movieInfo={movieInfo}
+              handleReserveData={handleReserveData}
+            />
+          );
         })}
       </TimeBtnWrapper>
     </StyledSelectTime>

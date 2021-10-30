@@ -1,9 +1,20 @@
 import styled from 'styled-components';
 
-export default function TimeBtn({ movieInfo }) {
-  const { movie_name, start_time, end_time, movie_theater_name } = movieInfo;
+export default function TimeBtn({ movieInfo, handleReserveData }) {
+  const {
+    movie_name,
+    start_time,
+    end_time,
+    movie_theater_name,
+    movie_theater_id,
+  } = movieInfo;
+
   return (
-    <StyledTimeBtn onClick={() => alert('예매 완료!')}>
+    <StyledTimeBtn
+      onClick={() => {
+        handleReserveData(movie_theater_id);
+      }}
+    >
       <Time>
         <strong>{start_time}</strong>
         <em>{`~${end_time}`}</em>
