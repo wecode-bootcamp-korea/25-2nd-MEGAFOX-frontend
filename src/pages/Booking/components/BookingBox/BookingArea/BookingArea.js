@@ -9,6 +9,7 @@ export default function BookingArea({
   selectedTheaterList,
   handleSelectedMovieList,
   handleSelectedTheaterList,
+  handleReserveData,
 }) {
   const { movie_list, theater_list, movie_info } = dataList;
 
@@ -24,7 +25,10 @@ export default function BookingArea({
         selectedTheaterList={selectedTheaterList}
         handleSelectedTheaterList={handleSelectedTheaterList}
       />
-      <SelectTime movieListInfo={movie_info} />
+      <SelectTime
+        movieListInfo={movie_info}
+        handleReserveData={handleReserveData}
+      />
     </StyledBookingArea>
   );
 }

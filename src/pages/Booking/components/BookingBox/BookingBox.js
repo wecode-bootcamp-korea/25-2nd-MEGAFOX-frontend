@@ -119,6 +119,23 @@ export default function BookingBox() {
     }
   };
 
+  const handleReserveData = movie_theater_id => {
+    const { 청소년: adult, 성인: teenager, 유아: kid } = selectedSeat;
+    fetch('http://3.36.66.16:8000/booking/reserve', {
+      method: 'POST',
+      headers: {
+        Authorization: getToken(),
+      },
+      body: JSON.stringify({
+        movie_theater_id,
+        adult,
+        teenager,
+        kid,
+      }),
+    });
+    alert('예매 완료!');
+  };
+
   const plusSelectedSeat = type => {
     const isLimit = 10 <= selectedSeat[type];
     if (!isLimit)
@@ -166,6 +183,7 @@ export default function BookingBox() {
           selectedTheaterList={selectedTheaterList}
           handleSelectedMovieList={handleSelectedMovieList}
           handleSelectedTheaterList={handleSelectedTheaterList}
+          handleReserveData={handleReserveData}
         />
       )}
       <CountingBtnWrapper>
