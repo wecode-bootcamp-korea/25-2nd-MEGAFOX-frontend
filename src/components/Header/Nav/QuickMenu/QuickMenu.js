@@ -1,89 +1,67 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import SiteMap from './../SiteMap/SiteMap';
 import Search from '../Search/Search';
 import UserInfo from '../UserInfo/UserInfo';
 
-class QuickMenu extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isClicked: {
-        isSiteMapOpen: false,
-        isSearchOpen: false,
-        isUserOpen: false,
-      },
-    };
-  }
+export default function QuickMenu() {
+  const [isClicked, setIsClicked] = useState({});
+  const history = useHistory();
 
-  isClickedButton = name => {
-    this.setState(prevState => ({
-      isClicked: {
-        [name]: !prevState.isClicked[name],
-      },
-    }));
+  const isClickedButton = name => {
+    setIsClicked({ [name]: !isClicked[name] });
   };
 
-  goToTheater = () => {
-    const { history } = this.props;
+  const goToTheater = () => {
     history.push('/theater/list');
   };
 
-  render() {
-    const { isClicked } = this.state;
-    return (
-      <>
-        <QuickMenuWrap>
-          <QuickMenuList>
-            <LeftLinks>
-              <QuickMenuButton
-                onClick={() => this.isClickedButton('isSiteMapOpen')}
-              >
-                <i
-                  className={`fas ${
-                    isClicked.isSiteMapOpen ? 'fa-times-circle' : 'fas fa-bars'
-                  }`}
-                />
-                사이트 맵
-              </QuickMenuButton>
+  return (
+    <>
+      <QuickMenuWrap>
+        <QuickMenuList>
+          <LeftLinks>
+            <QuickMenuButton onClick={() => isClickedButton('isSiteMapOpen')}>
+              <i
+                className={`fas ${
+                  isClicked.isSiteMapOpen ? 'fa-times-circle' : 'fas fa-bars'
+                }`}
+              />
+              사이트 맵
+            </QuickMenuButton>
 
-              <QuickMenuButton
-                onClick={() => this.isClickedButton('isSearchOpen')}
-              >
-                <i
-                  className={`fas ${
-                    isClicked.isSearchOpen ? 'fa-times-circle' : 'fas fa-search'
-                  }`}
-                />
-                검색
-              </QuickMenuButton>
-            </LeftLinks>
+            <QuickMenuButton onClick={() => isClickedButton('isSearchOpen')}>
+              <i
+                className={`fas ${
+                  isClicked.isSearchOpen ? 'fa-times-circle' : 'fas fa-search'
+                }`}
+              />
+              검색
+            </QuickMenuButton>
+          </LeftLinks>
 
-            <RightLinks className="linkArea">
-              <QuickMenuButton to="/theater/list" onClick={this.goToTheater}>
-                <i className="far fa-calendar-alt" />
-                상영시간표 바로가기
-              </QuickMenuButton>
-              <QuickMenuButton
-                onClick={() => this.isClickedButton('isUserOpen')}
-              >
-                <i
-                  className={`${
-                    isClicked.isUserOpen ? 'fas fa-times-circle' : 'far fa-user'
-                  }`}
-                />
-                내 정보
-              </QuickMenuButton>
-            </RightLinks>
-          </QuickMenuList>
-        </QuickMenuWrap>
-        {isClicked.isSiteMapOpen && <SiteMap />}
-        {isClicked.isSearchOpen && <Search />}
-        {isClicked.isUserOpen && <UserInfo />}
-      </>
-    );
-  }
+          <RightLinks className="linkArea">
+            <QuickMenuButton onClick={goToTheater}>
+              <i className="far fa-calendar-alt" />
+              상영시간표 바로가기
+            </QuickMenuButton>
+            <QuickMenuButton onClick={() => isClickedButton('isUserOpen')}>
+              <i
+                className={`${
+                  isClicked.isUserOpen ? 'fas fa-times-circle' : 'far fa-user'
+                }`}
+              />
+              내 정보
+            </QuickMenuButton>
+          </RightLinks>
+        </QuickMenuList>
+      </QuickMenuWrap>
+      {isClicked.isSiteMapOpen && <SiteMap />}
+      {isClicked.isSearchOpen && <Search />}
+      {isClicked.isUserOpen && <UserInfo />}
+    </>
+  );
 }
 
 const QuickMenuWrap = styled.div`
@@ -134,5 +112,3 @@ const QuickMenuButton = styled.button`
     color: #ccc;
   }
 `;
-
-export default withRouter(QuickMenu);

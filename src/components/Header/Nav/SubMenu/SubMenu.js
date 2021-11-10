@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-class SubMenu extends Component {
-  render() {
-    const { menu } = this.props;
-    return (
-      <SubMenuWrap>
-        {menu &&
-          menu.map(({ id, name, link }) => {
-            return (
-              <List key={id}>
-                <SubNavLink to={link}>{name}</SubNavLink>
-              </List>
-            );
-          })}
-      </SubMenuWrap>
-    );
-  }
+export default function SubMenu({ menu }) {
+  return (
+    <SubMenuWrap>
+      {menu &&
+        menu.map(({ id, name, link }) => {
+          return (
+            <List key={id}>
+              <SubNavLink to={link}>{name}</SubNavLink>
+            </List>
+          );
+        })}
+    </SubMenuWrap>
+  );
 }
 
 const SubMenuWrap = styled.ul`
@@ -45,5 +42,3 @@ const SubNavLink = styled(Link)`
     text-decoration: underline;
   }
 `;
-
-export default SubMenu;

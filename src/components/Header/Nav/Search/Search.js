@@ -1,79 +1,73 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import MOVIE_DATA from './MovieData';
 
-class Search extends Component {
-  constructor() {
-    super();
-    this.state = {
-      hoveredMoiveId: 0,
-      movieTitle: '',
-    };
-  }
+export default function Search() {
+  const [movieRank, setMovieRank] = useState([]);
+  const [movieId, setMovieId] = useState(0);
+  const [searchValue, setSearchValue] = useState('');
+  const history = useHistory();
 
-  isHoverTitle = id => {
-    this.setState({
-      hoveredMoiveId: id,
-    });
+  useEffect(() => {
+    fetch(`/data/MoviesList.json`)
+      .then(res => res.json())
+      .then(data => setMovieRank(data));
+  }, []);
+
+  const getMovieId = id => {
+    setMovieId(id);
   };
 
-  handleInput = e => {
-    this.setState({
-      movieTitle: e.target.value,
-    });
+  const getSearchValue = value => {
+    setSearchValue(value);
   };
 
-  goToMovie = () => {
-    const { movieTitle } = this.state;
-    const { history } = this.props;
-    if (0 < movieTitle.length) {
-      history.push('/movies');
+  const goToMovie = () => {
+    if (0 < searchValue.length) {
+      history.push('/movie');
     } else {
       alert('영화 이름을 입력하세요');
     }
   };
 
-  render() {
-    const rankMovie = MOVIE_DATA.slice(0, 5);
-    const { hoveredMoiveId } = this.state;
-
-    return (
-      <SearchWrap>
-        <SearchInner>
-          <MovieRank>
-            <RankTitle>메가폭스 관객순</RankTitle>
-            <MovieImg src={rankMovie[hoveredMoiveId].image[0][0]} />
-            <RankList>
-              {rankMovie.map(({ id, ko_name }) => {
+  return (
+    <SearchWrap>
+      <SearchInner>
+        <MovieRank>
+          <RankTitle>메가폭스 관객순</RankTitle>
+          <MovieImg
+            alt={movieRank[movieId]?.ko_name}
+            src={movieRank[movieId]?.image[0].main_image_url}
+          />
+          <RankList>
+            {movieRank &&
+              movieRank.map(({ movie_id, ko_name }, idx) => {
                 return (
-                  <Rank key={id}>
-                    <RankNum>{id + 1}</RankNum>
-                    <MovieName
-                      to="#n"
-                      onMouseEnter={() => this.isHoverTitle(id)}
-                    >
+                  <Rank key={movie_id}>
+                    <RankNum>{idx + 1}</RankNum>
+                    <MovieName to="#n" onMouseEnter={() => getMovieId(idx)}>
                       {ko_name}
                     </MovieName>
                   </Rank>
                 );
               })}
-            </RankList>
-          </MovieRank>
-          <SearchBar>
-            <SearchInput
-              type="text"
-              placeholder="영화를 검색하세요"
-              onChange={this.handleInput}
-            />
-            <SearchButton onClick={this.goToMovie}>
-              <i className="fas fa-search" />
-            </SearchButton>
-          </SearchBar>
-        </SearchInner>
-      </SearchWrap>
-    );
-  }
+          </RankList>
+        </MovieRank>
+        <SearchBar>
+          <SearchInput
+            type="text"
+            placeholder="영화를 검색하세요"
+            onChange={e => {
+              getSearchValue(e.target.value);
+            }}
+          />
+          <SearchButton onClick={goToMovie}>
+            <i className="fas fa-search" />
+          </SearchButton>
+        </SearchBar>
+      </SearchInner>
+    </SearchWrap>
+  );
 }
 
 const SearchWrap = styled.div`
@@ -173,5 +167,3 @@ const SearchButton = styled.button`
     color: #fff;
   }
 `;
-
-export default withRouter(Search);
