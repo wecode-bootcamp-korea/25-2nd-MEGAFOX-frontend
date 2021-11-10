@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import NAV_DATA from './NavData';
 import TopMenu from './TopMenu/TopMenu';
@@ -6,59 +6,43 @@ import SubMenu from './SubMenu/SubMenu';
 import QuickMenu from './QuickMenu/QuickMenu';
 import styled from 'styled-components';
 
-class Nav extends Component {
-  constructor() {
-    super();
-    this.state = {
-      hoveredMenuId: null,
-      isMouseOver: false,
-    };
-  }
+export default function Nav() {
+  const [hovered, setHovered] = useState(false);
+  const [menuId, setMenuId] = useState(null);
 
-  setHoverMenu = id => {
-    this.setState({
-      hoveredMenuId: id,
+  const isMouseOver = () => {
+    setHovered(prev => {
+      return !prev;
     });
   };
 
-  isHoverMenu = () => {
-    const { isMouseOver } = this.state;
-    this.setState({
-      isMouseOver: !isMouseOver,
-    });
+  const getMenuId = id => {
+    setMenuId(id);
   };
 
-  render() {
-    const { hoveredMenuId, isMouseOver } = this.state;
-
-    return (
-      <>
-        <GnbWrap>
-          <TopMenu />
-          <QuickMenu />
-          <NavList
-            onMouseEnter={this.isHoverMenu}
-            onMouseLeave={this.isHoverMenu}
-          >
-            {NAV_DATA.map(({ id, name, link, menu }) => {
-              return (
-                <React.Fragment key={id}>
-                  <List onMouseEnter={() => this.setHoverMenu(id)}>
-                    <NavLink to={link}>{name}</NavLink>
-                  </List>
-                  {id === hoveredMenuId && isMouseOver === true ? (
-                    <SubMenu menu={menu} />
-                  ) : null}
-                </React.Fragment>
-              );
-            })}
-          </NavList>
-        </GnbWrap>
-        {isMouseOver && <SubNavBg />}
-      </>
-    );
-  }
+  return (
+    <>
+      <GnbWrap>
+        <TopMenu />
+        <QuickMenu />
+        <NavList onMouseEnter={isMouseOver} onMouseLeave={isMouseOver}>
+          {NAV_DATA.map(({ id, name, link, menu }) => {
+            return (
+              <React.Fragment key={id}>
+                <List onMouseEnter={() => getMenuId(id)}>
+                  <NavLink to={link}>{name}</NavLink>
+                </List>
+                {id === menuId && hovered ? <SubMenu menu={menu} /> : null}
+              </React.Fragment>
+            );
+          })}
+        </NavList>
+      </GnbWrap>
+      {hovered && <SubNavBg />}
+    </>
+  );
 }
+
 const GnbWrap = styled.div`
   position: relative;
 `;
@@ -99,5 +83,3 @@ const SubNavBg = styled.div`
   margin-top: 80px;
   background: rgba(0, 0, 0, 0.9);
 `;
-
-export default Nav;

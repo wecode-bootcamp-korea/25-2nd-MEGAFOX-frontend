@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-class Guest extends Component {
-  render() {
-    return (
-      <NonMember>
-        <SignUptext>
-          로그인 하시면 나의 메가폭스를 만날 수 있어요.
-          <br />
-          영화를 사랑하는 당신을 위한 꼭 맞는 혜택까지 확인해 보세요!
-        </SignUptext>
-        <LoginBtn>로그인</LoginBtn>
-      </NonMember>
-    );
-  }
+export default function Guest() {
+  return (
+    <NonMember>
+      <SignUptext>
+        로그인 하시면 나의 메가폭스를 만날 수 있어요.
+        <br />
+        영화를 사랑하는 당신을 위한 꼭 맞는 혜택까지 확인해 보세요!
+      </SignUptext>
+      <LoginBtn>로그인</LoginBtn>
+    </NonMember>
+  );
 }
 
 const NonMember = styled.div`
@@ -38,5 +36,3 @@ const LoginBtn = styled.button`
   font-size: 16px;
   cursor: pointer;
 `;
-
-export default Guest;

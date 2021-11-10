@@ -1,36 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import NAV_DATA from '../NavData';
 import styled from 'styled-components';
 
-class SiteMap extends Component {
-  render() {
-    return (
-      <SiteMapWrap>
-        <SiteMapInner>
-          <SiteMapTitle>SITEMAP</SiteMapTitle>
-          <SiteMapList>
-            {NAV_DATA.map(({ id, name, link, menu }) => {
-              return (
-                <Page key={id}>
-                  <PageTitle>{name}</PageTitle>
-                  <SubPageList>
-                    {menu.map(({ id, name }) => {
-                      return (
-                        <SubPage key={id}>
-                          <SubPageLink to={link}>{name}</SubPageLink>
-                        </SubPage>
-                      );
-                    })}
-                  </SubPageList>
-                </Page>
-              );
-            })}
-          </SiteMapList>
-        </SiteMapInner>
-      </SiteMapWrap>
-    );
-  }
+export default function SiteMap() {
+  return (
+    <SiteMapWrap>
+      <SiteMapInner>
+        <SiteMapTitle>SITEMAP</SiteMapTitle>
+        <SiteMapList>
+          {NAV_DATA.map(({ id, name, link, menu }) => {
+            return (
+              <Page key={id}>
+                <PageTitle>{name}</PageTitle>
+                <SubPageList>
+                  {menu.map(({ id, name }) => {
+                    return (
+                      <SubPage key={id}>
+                        <SubPageLink to={link}>{name}</SubPageLink>
+                      </SubPage>
+                    );
+                  })}
+                </SubPageList>
+              </Page>
+            );
+          })}
+        </SiteMapList>
+      </SiteMapInner>
+    </SiteMapWrap>
+  );
 }
 
 const SiteMapWrap = styled.div`
@@ -89,5 +87,3 @@ const SubPageLink = styled(Link)`
     text-decoration: underline;
   }
 `;
-
-export default SiteMap;

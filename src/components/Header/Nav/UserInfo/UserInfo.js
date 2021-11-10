@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Guest from './Guest/Guest';
 import Member from './Member/Member';
 import styled from 'styled-components';
 
-class UserInfo extends Component {
-  render() {
-    const hadToken = window.localStorage.token;
-    return <UserInfoWrap>{hadToken ? <Member /> : <Guest />}</UserInfoWrap>;
-  }
+// (function setToken() {
+//   localStorage.setItem('token', '1111');
+// })();
+
+export default function UserInfo() {
+  const hasToken = window.localStorage.token;
+  return (
+    <UserInfoWrap>
+      {hasToken ? <Member token={hasToken} /> : <Guest />}
+    </UserInfoWrap>
+  );
 }
 
 const UserInfoWrap = styled.div`
@@ -19,5 +25,3 @@ const UserInfoWrap = styled.div`
   background: ${({ theme }) => theme.green};
   z-index: 100;
 `;
-
-export default UserInfo;

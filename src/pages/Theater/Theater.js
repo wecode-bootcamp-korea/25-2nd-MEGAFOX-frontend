@@ -142,13 +142,13 @@ const TheaterList = styled.li`
 `;
 
 const UserTheater = styled.div`
-  padding 20px 20px;
+  padding: 20px 20px;
   ${BorderRadius}
   background-color: #ecf0f4;
 
   i {
     margin-right: 5px;
-    color: ${({ theme }) => theme.green}
+    color: ${({ theme }) => theme.green};
   }
 
   span {
