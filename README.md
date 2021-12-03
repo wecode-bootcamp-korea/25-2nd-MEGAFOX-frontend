@@ -3,6 +3,8 @@
 - MEGAFOX는 영화 예매 사이트 [MEGABOX](https://www.megabox.co.kr/)를 클론한 프로젝트 입니다.
 - 짧은 프로젝트 기간동안 개발에 집중해야 하므로 디자인/기획 부분만 클론했습니다.
 
+<br> 
+
 ### ☘️ 개발 인원 및 기간
 
 - 개발기간 : 2021. 10. 18 ~ 2021. 10. 28
@@ -10,26 +12,17 @@
 
 - [back-end repo ←](https://github.com/wecode-bootcamp-korea/25-2nd-MEGAFOX-backend)
 
-### 🍀 프로젝트 선정이유
+<br> 
 
-- 이 사이트는, 조사결과 클론 코딩을 하며 배울점이 많아 선정하게 되었습니다.
+## 🚀 적용 기술
+- **HTML/CSS**
+- **JavaScript**
+- **React**
+- **React Hooks**
+- **React Router**
+- **Styled-Components**
 
-<br>
-
-## 적용 기술 및 구현 기능
-
-### 🚀 적용 기술
-> **HTML**
-> <br>
-> **JavaScript**
-> <br>
-> **React**
-> <br>
-> **React Hooks**
-> <br>
-> **React Router**
-> <br>
-> **Styled-Components**
+<br> 
 
 ## 🔥 구현 기능 
 
@@ -40,6 +33,7 @@
 - 로그인/아웃 상태에 따른 유저 정보 출력 구현
 - 메인페이지 : api를 사용한 관객 수 top 4 영화리스트 출력
 - 영화 포스터에 마우스 호버 시 해당 영화 정보 출력 기능 구현
+
 
 ### 👩‍💻 신혜리
 - 공용 탭 컴포넌트 구현
@@ -68,7 +62,7 @@
 https://user-images.githubusercontent.com/73053147/139662421-ce2e5b56-0a9b-451e-861a-84021e20f429.mov
 
 
-## 🔴 Reference
+## ☑️ Reference
 
 - 이 프로젝트는 [MEGABOX](https://www.megabox.co.kr/) 사이트를 참조하여 학습목적으로 만들었습니다.
 - 학습용으로 만든 프로젝트임으로 이를 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제될 수 있습니다.
