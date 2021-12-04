@@ -4,11 +4,6 @@ import styled from 'styled-components';
 import Modal from 'components/Modal';
 import { KAKAO_LOGIN_URL } from 'config';
 
-// 테스트 코드
-function setToken() {
-  localStorage.setItem('token', '1111');
-}
-
 export default function Login({ closeLogin }) {
   return (
     <Modal closeModal={closeLogin}>
@@ -24,7 +19,7 @@ export default function Login({ closeLogin }) {
           <Ad>광고</Ad>
         </MobileSimpleLogin>
       </LineToSaveId>
-      <LoginBtn onClick={() => setToken()}>로그인</LoginBtn>
+      <LoginBtn>로그인</LoginBtn>
       <Links>
         <Link to="/">ID/PW 찾기</Link>
         <Link to="/">회원가입</Link>

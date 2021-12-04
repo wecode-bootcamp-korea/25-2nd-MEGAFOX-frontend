@@ -5,6 +5,7 @@ import TimeSchedule from './TimeSchedule';
 import BookingArea from './BookingArea';
 import { getToken } from 'functions/handleToken';
 import CountingBtn from './CountingBtn';
+import { API } from 'config';
 
 export default function BookingBox() {
   const [dataList, setDataList] = useState();
@@ -24,6 +25,7 @@ export default function BookingBox() {
     const setQs = () => {
       // movie, theater, date, city
       const currentQs = new URLSearchParams();
+
       selectedMovieList?.forEach(movieId =>
         currentQs.append('movieNo', movieId)
       );
@@ -34,28 +36,7 @@ export default function BookingBox() {
       selectedCity && currentQs.append('city', selectedCity);
 
       history.push('/booking?' + currentQs.toString());
-      // comment 작성하면서 참고하려 지우지 않았습니다.
-      // const movies =
-      //   selectedMovieList.length === 0
-      //     ? ''
-      //     : selectedMovieList
-      //         .map(movieId => `&movieNo=${movieId}`)
-      //         .reduce((acc, cur) => acc + cur);
-      // const theater =
-      //   selectedTheaterList.length === 0
-      //     ? ''
-      //     : selectedTheaterList
-      //         .map(theaterId => `&theater_id=${theaterId}`)
-      //         .reduce((acc, cur) => acc + cur);
-
-      //movieNo=1&date=2021-10-29&city=1&theater_id=1
-
-      // const date = selectedDate ? `date=${selectedDate}` : '';
-      // const city = selectedCity ? `&city=${selectedCity}` : '';
-
-      // qs = `${movies}${date}${city}${theater}`;
     };
-
     setQs();
   }, [
     selectedMovieList,
@@ -121,7 +102,7 @@ export default function BookingBox() {
 
   const handleReserveData = movie_theater_id => {
     const { 청소년: adult, 성인: teenager, 유아: kid } = selectedSeat;
-    fetch('http://3.36.66.16:8000/booking/reserve', {
+    fetch(API.booking_reserve, {
       method: 'POST',
       headers: {
         Authorization: getToken(),
@@ -150,8 +131,8 @@ export default function BookingBox() {
 
   useEffect(() => {
     const qs = location.search;
-    const API = `http://3.36.66.16:8000/booking/reserve${qs}`;
-    fetch(API, {
+
+    fetch(API(qs).booking_reserve, {
       headers: {
         Authorization: getToken(),
       },
@@ -165,7 +146,7 @@ export default function BookingBox() {
   useEffect(() => {
     if (dataList) {
       const { theater } = dataList.theater_list[0];
-      typeof selectedTheaterList === 'undefined'
+      selectedTheaterList
         ? setSelectedTheaterList(() =>
             theater.map(({ theater_id }) => theater_id)
           )
