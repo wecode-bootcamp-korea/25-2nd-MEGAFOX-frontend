@@ -1,11 +1,12 @@
 const BASE_URL = 'http://3.36.66.16:8000';
 
-export const API = {
+export const API = qs => ({
   login: BASE_URL + '/users/kakao/signin',
   movie: BASE_URL + '/movie',
   movie_detail: BASE_URL + '/movie/',
   theater_list: BASE_URL + '/theaters',
-};
+  booking_reserve: BASE_URL + `/booking/reserve${qs}`,
+});
 
 export const REDIRECT_URI = 'http://localhost:3000/oauth/kakao';
 

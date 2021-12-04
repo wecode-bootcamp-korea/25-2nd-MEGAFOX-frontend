@@ -6,14 +6,6 @@ export default function SelectMovie({
   selectedMovieList,
   handleSelectedMovieList,
 }) {
-  const matchToAge = {
-    '12세이상관람가': { label: '12', bgColor: '#188ef7' },
-    '15세이상관람가': { label: '15', bgColor: '#e81002' },
-    청소년관람불가: { label: '청불', bgColor: '#e81002' },
-    전체관람가: { label: '전체', bgColor: '#3fa701' },
-  };
-
-  // 데이터 받고 맵 돌려야함.
   return (
     <StyledSelectMovie>
       <Header>영화</Header>
@@ -126,3 +118,10 @@ const Poster = styled.img`
   height: 85px;
   background-size: cover;
 `;
+
+const matchToAge = {
+  '12세이상관람가': { label: '12', bgColor: '#188ef7' },
+  '15세이상관람가': { label: '15', bgColor: '#e81002' },
+  청소년관람불가: { label: '청불', bgColor: '#e81002' },
+  전체관람가: { label: '전체', bgColor: '#3fa701' },
+};
